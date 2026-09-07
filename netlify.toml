@@ -1,9 +1,8 @@
 [build]
-  base = "san-ad-main"
   command = "npm run build"
-  publish = "san-ad-main/dist"
+  publish = "dist"
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/.netlify/functions/server"
   status = 200
