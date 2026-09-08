@@ -56,7 +56,7 @@ function Landing() {
             ) : (
               <>
                 <Button variant="ghost" asChild>
-                  <Link to="/auth">{t("nav.login")}</Link>
+                  <Link to="/auth" search={{ mode: "signin" }}>{t("nav.login")}</Link>
                 </Button>
                 <Button asChild className="gradient-primary border-0 shadow-soft">
                   <Link to="/auth" search={{ mode: "signup" }}>{t("nav.signup")}</Link>
