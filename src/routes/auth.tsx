@@ -23,8 +23,7 @@ function AuthPage() {
   const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const search = useSearch({ from: "/auth" });
-  
-  // يفتح افتراضياً على إنشاء الحساب ما لم يُطلب تسجيل الدخول صراحة في الرابط
+
   const [mode, setMode] = useState<"signin" | "signup" | "forgot">(search.mode ?? "signup");
   const [resetSent, setResetSent] = useState(false);
   const [email, setEmail] = useState("");
@@ -35,7 +34,6 @@ function AuthPage() {
   const [role, setRole] = useState<AppRole>("parent");
   const [loading, setLoading] = useState(false);
 
-  // تحديث حالة العرض تلقائياً إذا تغيرت القيمة القادمة من الرابط
   useEffect(() => {
     if (search.mode) {
       setMode(search.mode);
@@ -69,7 +67,10 @@ function AuthPage() {
         if (error) throw error;
         toast.success("تم إنشاء حسابك بنجاح! مرحباً بك في سند.");
       } else {
-        const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
+        const { error } = await supabase.auth.signInWithPassword({ 
+          email: email.trim(), 
+          password 
+        });
         if (error) throw error;
         toast.success("مرحباً بك مجدداً!");
       }
